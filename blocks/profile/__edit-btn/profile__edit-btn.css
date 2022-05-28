@@ -8,5 +8,14 @@
     background-image: url("./edit.svg");
     background-position: 50%;
     background-repeat: no-repeat;
-    margin: 0 0 6px 18px;
+    margin: 0 0 8px 18px;
+}
+
+@media screen and (max-width: 1023px) {
+    .profile__edit-btn {
+        width: 18px;
+        height: 18px;
+        margin: 0 0 5px 10px;
+    }
+
 }
