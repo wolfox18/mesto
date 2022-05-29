@@ -26,3 +26,11 @@
 @import url(../blocks/element/__like/element__like.css);
 
 @import url(../blocks/footer/footer.css);
+
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__content/popup__conten.css);
+@import url(../blocks/popup/__close-btn/popup__close-btn.css);
+@import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__input/popup__input.css);
+
+@import url(../blocks/popup/__save-btn/popup__save-btn.css);
