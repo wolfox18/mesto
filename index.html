@@ -22,7 +22,9 @@
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
                 <button class="profile__edit-btn transparent-btn"></button>
             </div>
-            <p class="profile__description">Исследователь океана</p>
+            <div class="profile__description-block">
+                <p class="profile__description">Исследователь океана</p>
+            </div>
         </div>
         <button class="profile__post-add transparent-btn"></button>
     </section>
@@ -66,7 +68,7 @@
             <li class="element">
                 <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="element__image">
                 <div class="element__info">
-                    <h2 class="element__title">Карачаево-Ч...</h2>
+                    <h2 class="element__title">Карачаево-Черкессия</h2>
                     <button class="element__like transparent-btn"></button>
                 </div>
             </li>
@@ -74,13 +76,14 @@
     </section>
     <footer class="footer">&copy; 2020 Mesto Russia</footer>
     <div class="popup">
-        <div class="popup__content">
-            <button class="popup__close-btn transparent-btn"></button>
+        <form class="popup__container">
+
             <h2 class="popup__title">Редактировать профиль</h2>
-            <input type="text" value="Жак-Ив Кусто" class="popup__input">
-            <input type="text" value="Исследователь океана" class="popup__input">
-            <button class="popup__save-btn">Сохранить</button>
-        </div>
+            <input type="text" value="Жак-Ив Кусто" class="popup__input popup__input_type_name">
+            <input type="text" value="Исследователь океана" class="popup__input popup__input_type_description">
+            <button class="popup__save-btn transparent-btn">Сохранить</button>
+            <button class="popup__close-btn transparent-btn"></button>
+        </form>
     </div>
     <script src="./pages/index.js"></script>
 </body>

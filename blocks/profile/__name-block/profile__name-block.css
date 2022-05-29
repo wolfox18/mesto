@@ -1,6 +1,7 @@
 .profile__name-block{
     display: flex;
     align-items: flex-end;
+    max-width: 550px;
 
 }
 

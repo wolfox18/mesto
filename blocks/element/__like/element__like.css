@@ -7,4 +7,5 @@
     background-color: transparent;
     width: 22px;
     height: 19px;
+    flex-shrink: 0;
 }

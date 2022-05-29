@@ -9,6 +9,7 @@
     background-position: 50%;
     background-repeat: no-repeat;
     margin: 0 0 8px 18px;
+    flex-shrink: 0;
 }
 
 @media screen and (max-width: 1023px) {

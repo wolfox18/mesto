@@ -1,0 +1,12 @@
+.profile__description-block {
+    max-width: 550px;
+
+}
+
+@media screen and (max-width: 1023px) {
+    .profile__description-block {
+
+        margin: 0 auto;
+    }
+
+}
