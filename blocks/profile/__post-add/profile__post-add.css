@@ -5,7 +5,7 @@
     height: 50px;
     border-radius: 2px;
     background-color: black;
-    background-image: url('./add.svg');
+    background-image: url('/images/add.svg');
     background-position: 50%;
     background-repeat: no-repeat;
     flex-shrink: 0;
@@ -15,5 +15,6 @@
     .profile__post-add{
         width: 100%;
         max-width: 282px;
+        background-size: 16px;
     }
 }

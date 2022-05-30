@@ -2,7 +2,6 @@
     margin-top: 48px;
     background: #000000;
     border-radius: 2px;
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -10,6 +9,7 @@
     text-align: center;
     padding: 14px 0 18px;
     color: #FFFFFF;
+    border: 0;
 }
 
 @media screen and (max-width: 767px) {
