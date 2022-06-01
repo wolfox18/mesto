@@ -1,6 +1,6 @@
 //popup elements
 let popup = document.querySelector('.popup');
-let formElement = popup.querySelector('.popup__container');
+let formElement = popup.querySelector('.popup__form');
 let popupCloseBtn = document.querySelector('.popup__close-btn');
 let nameInput = popup.querySelector('.popup__input_type_name');
 let descriptionInput = popup.querySelector('.popup__input_type_description');
@@ -19,16 +19,6 @@ function closePopup() {
     popup.classList.remove('popup_opened');
 }
 
-editProfileBtn.addEventListener('click', openPopup);
-
-popupCloseBtn.addEventListener('click', closePopup);
-
-popup.addEventListener('click', function (e) {
-    if (e.target === e.currentTarget) {
-        closePopup();
-    }
-})
-
 //form submit
 function formSubmitHandler(evt) {
     evt.preventDefault();
@@ -38,5 +28,15 @@ function formSubmitHandler(evt) {
     profileDescription.textContent = description;
     closePopup();
 }
+
+editProfileBtn.addEventListener('click', openPopup);
+
+popupCloseBtn.addEventListener('click', closePopup);
+
+/* popup.addEventListener('click', function (e) {
+    if (e.target === e.currentTarget) {
+        closePopup();
+    }
+}) */
 
 formElement.addEventListener('submit', formSubmitHandler); 

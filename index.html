@@ -17,17 +17,17 @@
     </header>
     <main>
         <section class="profile">
-            <img src="./images/cousteau-photo.jpg" alt="Аватар Жака Кусто" class="profile__avatar">
+            <img src="./images/cousteau-photo.jpg" alt="Аватар пользователя" class="profile__avatar">
             <div class="profile__info">
                 <div class="profile__name-block">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button type="button" class="profile__edit-btn transparent-btn"></button>
+                    <button aria-label="Редактировать профиль" type="button" class="profile__edit-btn transparent-btn"></button>
                 </div>
 
                 <p class="profile__description">Исследователь океана</p>
 
             </div>
-            <button type="button" class="profile__post-add transparent-btn"></button>
+            <button aria-label="Добавить запись" type="button" class="profile__post-add transparent-btn"></button>
         </section>
         <section class="elements">
             <ul class="elements__list">
@@ -35,42 +35,42 @@
                     <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="element__image">
                     <div class="element__info">
                         <h2 class="element__title">Карачаевск</h2>
-                        <button type="button" class="element__like transparent-btn transparent-btn_opacity_05"></button>
+                        <button aria-label="Нравится" type="button" class="element__like transparent-btn transparent-btn_opacity_medium"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img src="./images/elbrus.jpg" alt="Эльбрус" class="element__image">
                     <div class="element__info">
                         <h2 class="element__title">Гора Эльбрус</h2>
-                        <button type="button" class="element__like transparent-btn"></button>
+                        <button aria-label="Нравится" type="button" class="element__like transparent-btn transparent-btn_opacity_medium"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img src="./images/dombai.jpg" alt="Домбай" class="element__image">
                     <div class="element__info">
                         <h2 class="element__title">Домбай</h2>
-                        <button type="button" class="element__like transparent-btn transparent-btn_opacity_05"></button>
+                        <button aria-label="Нравится" type="button" class="element__like transparent-btn transparent-btn_opacity_medium"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img src="./images/elbrus.jpg" alt="Эльбрус" class="element__image">
                     <div class="element__info">
                         <h2 class="element__title">Гора Эльбрус</h2>
-                        <button type="button" class="element__like transparent-btn transparent-btn_opacity_05"></button>
+                        <button aria-label="Нравится" type="button" class="element__like transparent-btn transparent-btn_opacity_medium"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img src="./images/dombai.jpg" alt="Домбай" class="element__image">
                     <div class="element__info">
                         <h2 class="element__title">Домбай</h2>
-                        <button type="button" class="element__like transparent-btn transparent-btn_opacity_05"></button>
+                        <button aria-label="Нравится" type="button" class="element__like transparent-btn transparent-btn_opacity_medium"></button>
                     </div>
                 </li>
                 <li class="element">
                     <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="element__image">
                     <div class="element__info">
                         <h2 class="element__title">Карачаево-Черкессия</h2>
-                        <button type="button" class="element__like transparent-btn transparent-btn_opacity_05"></button>
+                        <button aria-label="Нравится" type="button" class="element__like transparent-btn transparent-btn_opacity_medium"></button>
                     </div>
                 </li>
             </ul>
@@ -81,14 +81,14 @@
     </footer>
     <div class="popup">
         <div class="popup__container">
-            <button type="button" class="popup__close-btn transparent-btn"></button>
-            <form class="popup__form">
+            <button aria-label="Закрыть" type="button" class="popup__close-btn transparent-btn"></button>
+            <form name="profile-form" class="popup__form">
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <input name="name" required placeholder="Имя" type="text" value="Жак-Ив Кусто"
                     class="popup__input popup__input_type_name">
                 <input name="description" required placeholder="Информация" type="text" value="Исследователь океана"
                     class="popup__input popup__input_type_description">
-                <button type="submit" class="popup__save-btn transparent-btn transparent-btn_opacity_08">Сохранить</button>
+                <button aria-label="Сохранить" type="submit" class="popup__save-btn transparent-btn transparent-btn_opacity_hard">Сохранить</button>
             </form>
         </div>
     </div>
