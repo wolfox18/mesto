@@ -4,8 +4,8 @@
 @import url(../blocks/page/page.css);
 
 @import url(../blocks/transparent-btn/transparent-btn.css);
-@import url(../blocks/transparent-btn/_opacity/_medium/transparent-btn_opacity_medium.css);
-@import url(../blocks/transparent-btn/_opacity/_hard/transparent-btn_opacity_hard.css);
+@import url(../blocks/transparent-btn/_opacity/transparent-btn_opacity_medium.css);
+@import url(../blocks/transparent-btn/_opacity/transparent-btn_opacity_hard.css);
 
 @import url(../blocks/header/header.css);
 @import url(../blocks/logo/__image/logo__image.css);
