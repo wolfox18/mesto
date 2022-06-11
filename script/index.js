@@ -1,29 +1,33 @@
 const initialCards = [
     {
-      name: 'Амстердам',
-      link: '../images/amsterdam.jpg'
+        name: 'Амстердам',
+        link: './images/amsterdam.jpg'
     },
     {
-      name: 'Киев',
-      link: '../images/kyiv.jpg'
+        name: 'Киев',
+        link: './images/kyiv.jpg'
     },
     {
-      name: 'Массачусетский технологический институт',
-      link: '../images/MIT.jpg'
+        name: 'Массачусетский технологический институт',
+        link: './images/MIT.jpg'
     },
     {
-      name: 'Осака',
-      link: '../images/osaka.jpg'
+        name: 'Осака',
+        link: './images/osaka.jpg'
     },
     {
-      name: 'Сингапур',
-      link: '../images/singapore.jpg'
+        name: 'Сингапур',
+        link: './images/singapore.jpg'
     },
     {
-      name: 'Тбилиси',
-      link: '../images/tbilisi.jpg'
+        name: 'Тбилиси',
+        link: './images/tbilisi.jpg'
     }
-  ]; 
+];
+
+const elementsList = document.querySelector('.elements__list');
+let elements = elementsList.querySelectorAll('.element');
+
 
 //PROFILE EDIT FEATURE
 let profilePopup = document.querySelector('.popup_type_profile');
@@ -53,7 +57,7 @@ function profileFormSubmitHandler(evt) {
 }
 editProfileBtn.addEventListener('click', openProfilePopup);
 profilePopupCloseBtn.addEventListener('click', closeProfilePopup);
-profileFormElement.addEventListener('submit', profileFormSubmitHandler); 
+profileFormElement.addEventListener('submit', profileFormSubmitHandler);
 
 /* popup.addEventListener('click', function (e) {
     if (e.target === e.currentTarget) {
@@ -63,13 +67,15 @@ profileFormElement.addEventListener('submit', profileFormSubmitHandler);
 
 //NEW ELEMENT FEATURE
 const elementTemplate = document.querySelector('#element-template').content;
-const elementsList = document.querySelector('.elements__list');
-function addNewElement(elementPlace, elementUrl){
+function addNewElement(elementPlace, elementUrl) {
     const newElement = elementTemplate.querySelector('.element').cloneNode(true);
     newElement.querySelector('.element__image').src = elementUrl;
     newElement.querySelector('.element__title').textContent = elementPlace;
     elementsList.prepend(newElement);
+    elements = elementsList.querySelectorAll('.element');
+    //ерунда, лучше сделать потом чтобы не надо было пересобирать елементс, надо посмотреть как в него один элемент добавлять, Push чегото не работает
 }
+
 let newElementPopup = document.querySelector('.popup_type_new-element');
 let newElementForm = newElementPopup.querySelector('.popup__container');
 let newElementPopupCloseBtn = newElementPopup.querySelector('.popup__close-btn');
@@ -80,7 +86,7 @@ let newElementButton = document.querySelector('.profile__post-add')
 function openNewElementPopup() {
     newElementPopup.classList.add('popup_opened');
     placeInput.value = '';
-    urlInput.value = '';
+    urlInput.value = './images/elbrus.jpg';
 }
 function closeNewElementPopup() {
     newElementPopup.classList.remove('popup_opened');
@@ -92,8 +98,17 @@ function newElementFormSubmitHandler(evt) {
 }
 newElementButton.addEventListener('click', openNewElementPopup);
 newElementPopupCloseBtn.addEventListener('click', closeNewElementPopup);
-newElementForm.addEventListener('submit', newElementFormSubmitHandler); 
+newElementForm.addEventListener('submit', newElementFormSubmitHandler);
 //add initial cards
-for (let i = 0; i < initialCards.length; i++){
+for (let i = 0; i < initialCards.length; i++) {
     addNewElement(initialCards[i].name, initialCards[i].link);
 }
+
+//ELEMENT LIKE FEATURE
+
+elements.forEach(element => {
+    let elementLikeButton = element.querySelector('.element__like');
+    elementLikeButton.addEventListener('click', function () {
+        elementLikeButton.classList.toggle('element__like_active');
+    });
+});
