@@ -26,7 +26,7 @@ const initialCards = [
 ];
 
 const elementsList = document.querySelector('.elements__list');
-let elements = elementsList.querySelectorAll('.element');
+
 
 
 //PROFILE EDIT FEATURE
@@ -72,8 +72,19 @@ function addNewElement(elementPlace, elementUrl) {
     newElement.querySelector('.element__image').src = elementUrl;
     newElement.querySelector('.element__title').textContent = elementPlace;
     elementsList.prepend(newElement);
-    elements = elementsList.querySelectorAll('.element');
-    //ерунда, лучше сделать потом чтобы не надо было пересобирать елементс, надо посмотреть как в него один элемент добавлять, Push чегото не работает
+ 
+    //card like feature
+    let elementLikeButton = newElement.querySelector('.element__like');
+    elementLikeButton.addEventListener('click', function () {
+        elementLikeButton.classList.toggle('element__like_active');
+    });
+
+    //card delete feature
+    const cardDeleteButton = newElement.querySelector('.element__delete-button');
+    cardDeleteButton.addEventListener('click', function (event) {
+        let parent = event.target.parentElement;
+        parent.remove();
+    });
 }
 
 let newElementPopup = document.querySelector('.popup_type_new-element');
@@ -104,11 +115,3 @@ for (let i = 0; i < initialCards.length; i++) {
     addNewElement(initialCards[i].name, initialCards[i].link);
 }
 
-//ELEMENT LIKE FEATURE
-
-elements.forEach(element => {
-    let elementLikeButton = element.querySelector('.element__like');
-    elementLikeButton.addEventListener('click', function () {
-        elementLikeButton.classList.toggle('element__like_active');
-    });
-});
