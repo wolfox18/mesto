@@ -1,3 +1,8 @@
-.element__like_active{
+.element__like_active {
     background-image: url('../../../../images/heart-filled.svg');
+
+}
+
+.element__like_active:hover{
+    opacity: 1;
 }
