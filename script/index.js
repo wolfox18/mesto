@@ -105,8 +105,7 @@ function addNewElement(elementPlace, elementUrl) {
     const newElement = elementTemplate.querySelector('.element').cloneNode(true);
     newElement.querySelector('.element__image').src = elementUrl;
     newElement.querySelector('.element__title').textContent = elementPlace;
-    elementsList.prepend(newElement);
-
+    
     //card like feature
     let elementLikeButton = newElement.querySelector('.element__like');
     elementLikeButton.addEventListener('click', function () {
@@ -128,11 +127,10 @@ function addNewElement(elementPlace, elementUrl) {
         bigImageName.textContent = elementPlace;
         bigImagePopup.classList.add('popup_opened');
     })
-
+    elementsList.prepend(newElement);
 }
 
 //add initial cards
 for (let i = 0; i < initialCards.length; i++) {
     addNewElement(initialCards[i].name, initialCards[i].link);
 }
-
