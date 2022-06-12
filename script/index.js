@@ -27,18 +27,16 @@ const initialCards = [
 
 const elementsList = document.querySelector('.elements__list');
 
-
-
 //profile edit popup
-let profilePopup = document.querySelector('.popup_type_profile');
-let profileFormElement = profilePopup.querySelector('.popup__container');
-let profilePopupCloseBtn = profilePopup.querySelector('.popup__close-btn');
-let nameInput = profilePopup.querySelector('.popup__input_type_name');
-let descriptionInput = profilePopup.querySelector('.popup__input_type_description');
-let profileSubmitButton = profilePopup.querySelector('.popup__save-btn');
-let editProfileBtn = document.querySelector('.profile__edit-btn');
-let profileName = document.querySelector('.profile__name');
-let profileDescription = document.querySelector('.profile__description');
+const profilePopup = document.querySelector('.popup_type_profile');
+const profileFormElement = profilePopup.querySelector('.popup__container');
+const profilePopupCloseBtn = profilePopup.querySelector('.popup__close-btn');
+const nameInput = profilePopup.querySelector('.popup__input_type_name');
+const descriptionInput = profilePopup.querySelector('.popup__input_type_description');
+const profileSubmitButton = profilePopup.querySelector('.popup__save-btn');
+const editProfileBtn = document.querySelector('.profile__edit-btn');
+const profileName = document.querySelector('.profile__name');
+const profileDescription = document.querySelector('.profile__description');
 function openProfilePopup() {
     profilePopup.classList.add('popup_opened');
     nameInput.value = profileName.textContent;
@@ -75,17 +73,17 @@ bigImaagePopupCloseBtn.addEventListener('click', function () {
 });
 
 //new post popup
-let newElementPopup = document.querySelector('.popup_type_new-element');
-let newElementForm = newElementPopup.querySelector('.popup__container');
-let newElementPopupCloseBtn = newElementPopup.querySelector('.popup__close-btn');
-let placeInput = newElementPopup.querySelector('.popup__input_type_place');
-let urlInput = newElementPopup.querySelector('.popup__input_type_url');
-let newElementSubmitButton = newElementPopup.querySelector('.popup__save-btn');
-let newElementButton = document.querySelector('.profile__post-add')
+const newElementPopup = document.querySelector('.popup_type_new-element');
+const newElementForm = newElementPopup.querySelector('.popup__container');
+const newElementPopupCloseBtn = newElementPopup.querySelector('.popup__close-btn');
+const placeInput = newElementPopup.querySelector('.popup__input_type_place');
+const urlInput = newElementPopup.querySelector('.popup__input_type_url');
+const newElementSubmitButton = newElementPopup.querySelector('.popup__save-btn');
+const newElementButton = document.querySelector('.profile__post-add')
 function openNewElementPopup() {
     newElementPopup.classList.add('popup_opened');
     placeInput.value = '';
-    urlInput.value = './images/elbrus.jpg';
+    urlInput.value = '';
 }
 function closeNewElementPopup() {
     newElementPopup.classList.remove('popup_opened');
@@ -105,6 +103,7 @@ function addNewElement(elementPlace, elementUrl) {
     const newElement = elementTemplate.querySelector('.element').cloneNode(true);
     newElement.querySelector('.element__image').src = elementUrl;
     newElement.querySelector('.element__title').textContent = elementPlace;
+    newElement.querySelector('.element__image').alt = "Миниаютюра «" + elementPlace + "»";
     
     //card like feature
     let elementLikeButton = newElement.querySelector('.element__like');
@@ -123,7 +122,7 @@ function addNewElement(elementPlace, elementUrl) {
     const smallPicture = newElement.querySelector('.element__image');
     smallPicture.addEventListener('click', function(){
         bigImage.src = elementUrl;
-        bigImage.alt = elementPlace;
+        bigImage.alt = "Фотография «" + elementPlace + "»";
         bigImageName.textContent = elementPlace;
         bigImagePopup.classList.add('popup_opened');
     })
