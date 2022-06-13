@@ -132,7 +132,7 @@ function createCard(elementPlace, elementUrl) {
         bigImage.src = elementUrl;
         bigImage.alt = "Фотография «" + elementPlace + "»";
         bigImageName.textContent = elementPlace;
-        bigImagePopup.classList.add('popup_opened');
+        openPopup(bigImagePopup);
     })
     return newElement;
 }
