@@ -3,10 +3,6 @@
 
 @import url(../blocks/page/page.css);
 
-@import url(../blocks/transparent-btn/transparent-btn.css);
-@import url(../blocks/transparent-btn/_opacity/transparent-btn_opacity_medium.css);
-@import url(../blocks/transparent-btn/_opacity/transparent-btn_opacity_hard.css);
-
 @import url(../blocks/header/header.css);
 @import url(../blocks/logo/__image/logo__image.css);
 
@@ -41,7 +37,14 @@
 @import url(../blocks/popup/__close-btn/popup__close-btn.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__input/popup__input.css);
+@import url(../blocks/popup/__input/_type/popup__input_type_error.css);
 @import url(../blocks/popup/__save-btn/popup__save-btn.css);
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__image-name/popup__image-name.css);
+@import url(../blocks/popup/__error-message/popup__error-message.css);
+
+@import url(../blocks/transparent-btn/transparent-btn.css);
+@import url(../blocks/transparent-btn/_opacity/transparent-btn_opacity_medium.css);
+@import url(../blocks/transparent-btn/_opacity/transparent-btn_opacity_hard.css);
+@import url(../blocks/button_inactive/button_inactive.css);

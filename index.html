@@ -1,90 +1,166 @@
 <!DOCTYPE html>
 <html lang="ru">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css">
-</head>
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
 
-<body class="page">
+  <body class="page">
     <header class="header">
-        <a href="#" class="logo">
-            <img src="./images/logo-mesto.svg" alt="Логотип Mesto Russia" class="logo__image">
-        </a>
+      <a href="#" class="logo">
+        <img
+          src="./images/logo-mesto.svg"
+          alt="Логотип Mesto Russia"
+          class="logo__image"
+        />
+      </a>
     </header>
     <main>
-        <section class="profile">
-            <img src="./images/cousteau-photo.jpg" alt="Аватар пользователя" class="profile__avatar">
-            <div class="profile__info">
-                <div class="profile__name-block">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button aria-label="Редактировать профиль" type="button"
-                        class="profile__edit-btn transparent-btn"></button>
-                </div>
+      <section class="profile">
+        <img
+          src="./images/cousteau-photo.jpg"
+          alt="Аватар пользователя"
+          class="profile__avatar"
+        />
+        <div class="profile__info">
+          <div class="profile__name-block">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button
+              aria-label="Редактировать профиль"
+              type="button"
+              class="profile__edit-btn transparent-btn"
+            ></button>
+          </div>
 
-                <p class="profile__description">Исследователь океана</p>
-
-            </div>
-            <button aria-label="Добавить запись" type="button" class="profile__post-add transparent-btn"></button>
-        </section>
-        <section class="elements">
-            <ul class="elements__list">
-                <template id="element-template">
-                    <li class="element">
-                        <button class="element__delete-button transparent-btn"></button>
-                        <img src="#" alt="" class="element__image">
-                        <div class="element__info">
-                            <h2 class="element__title"></h2>
-                            <button aria-label="Нравится" type="button"
-                                class="element__like transparent-btn transparent-btn_opacity_medium"></button>
-                        </div>
-                    </li>
-                </template>
-            </ul>
-        </section>
+          <p class="profile__description">Исследователь океана</p>
+        </div>
+        <button
+          aria-label="Добавить запись"
+          type="button"
+          class="profile__post-add transparent-btn"
+        ></button>
+      </section>
+      <section class="elements">
+        <ul class="elements__list">
+          <template id="element-template">
+            <li class="element">
+              <button class="element__delete-button transparent-btn"></button>
+              <img src="#" alt="" class="element__image" />
+              <div class="element__info">
+                <h2 class="element__title"></h2>
+                <button
+                  aria-label="Нравится"
+                  type="button"
+                  class="element__like transparent-btn transparent-btn_opacity_medium"
+                ></button>
+              </div>
+            </li>
+          </template>
+        </ul>
+      </section>
     </main>
     <footer class="footer">
-        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
     <div class="popup popup_type_profile">
-        <div class="popup__container popup__container_type_form">
-            <button aria-label="Закрыть" type="button" class="popup__close-btn transparent-btn"></button>
-            <form name="profile-form" class="popup__form">
-                <h2 class="popup__title">Редактировать профиль</h2>
-                <input name="name" required placeholder="Имя" type="text" value="Жак-Ив Кусто"
-                    class="popup__input popup__input_type_name">
-                <input name="description" required placeholder="Информация" type="text" value="Исследователь океана"
-                    class="popup__input popup__input_type_description">
-                <button aria-label="Сохранить" type="submit"
-                    class="popup__save-btn transparent-btn transparent-btn_opacity_hard">Сохранить</button>
-            </form>
-        </div>
+      <div class="popup__container popup__container_type_form">
+        <button
+          aria-label="Закрыть"
+          type="button"
+          class="popup__close-btn transparent-btn"
+        ></button>
+        <form name="profile-form" class="popup__form" novalidate>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input
+            name="name"
+            required
+            placeholder="Имя"
+            type="text"
+            id="input-name"
+            value="Жак-Ив Кусто"
+            minlength="2"
+            maxlength="40"
+            class="popup__input popup__input_type_name"
+          />
+          <span class="popup__error-message input-name-error"></span>
+          <input
+            name="description"
+            required
+            placeholder="Информация"
+            type="text"
+            id="input-description"
+            value="Исследователь океана"
+            minlength="2"
+            maxlength="200"
+            class="popup__input popup__input_type_description"
+          />
+          <span class="popup__error-message input-description-error"></span>
+          <button
+            aria-label="Сохранить"
+            type="submit"
+            class="popup__save-btn transparent-btn transparent-btn_opacity_hard"
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
     </div>
     <div class="popup popup_type_new-element">
-        <div class="popup__container popup__container_type_form">
-            <button aria-label="Закрыть" type="button" class="popup__close-btn transparent-btn"></button>
-            <form name="profile-form" class="popup__form">
-                <h2 class="popup__title">Новое место</h2>
-                <input name="place" required placeholder="Название" type="text" value=""
-                    class="popup__input popup__input_type_place">
-                <input name="url" required placeholder="Ссылка на картинку" type="text" value=""
-                    class="popup__input popup__input_type_url">
-                <button aria-label="Сохранить" type="submit"
-                    class="popup__save-btn transparent-btn transparent-btn_opacity_hard">Сохранить</button>
-            </form>
-        </div>
+      <div class="popup__container popup__container_type_form">
+        <button
+          aria-label="Закрыть"
+          type="button"
+          class="popup__close-btn transparent-btn"
+        ></button>
+        <form name="profile-form" class="popup__form" novalidate>
+          <h2 class="popup__title">Новое место</h2>
+          <input
+            name="place"
+            required
+            placeholder="Название"
+            type="text"
+            id="input-place"
+            value=""
+            minlength="2"
+            maxlength="30"
+            class="popup__input popup__input_type_place"
+          />
+          <span class="popup__error-message input-place-error"></span>
+          <input
+            name="url"
+            required
+            placeholder="Ссылка на картинку"
+            id="input-url"
+            type="url"
+            value=""
+            class="popup__input popup__input_type_url"
+          />
+          <span class="popup__error-message input-url-error"></span>
+          <button
+            aria-label="Сохранить"
+            type="submit"
+            class="popup__save-btn transparent-btn transparent-btn_opacity_hard"
+          >
+            Создать
+          </button>
+        </form>
+      </div>
     </div>
     <div class="popup popup_type_image">
-        <div class="popup__container">
-            <button aria-label="Закрыть" type="button" class="popup__close-btn transparent-btn"></button>
-            <img src="#" alt="" class="popup__image">
-            <p class="popup__image-name"></p>
-        </div>
+      <div class="popup__container">
+        <button
+          aria-label="Закрыть"
+          type="button"
+          class="popup__close-btn transparent-btn"
+        ></button>
+        <img src="#" alt="" class="popup__image" />
+        <p class="popup__image-name"></p>
+      </div>
     </div>
     <script src="./script/index.js"></script>
-</body>
-
+    <script src="./script/validate.js"></script>
+  </body>
 </html>
