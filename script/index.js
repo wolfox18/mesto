@@ -1,30 +1,3 @@
-const initialCards = [
-    {
-        name: 'Амстердам',
-        link: './images/amsterdam.jpg'
-    },
-    {
-        name: 'Киев',
-        link: './images/kyiv.jpg'
-    },
-    {
-        name: 'Массачусетский технологический институт',
-        link: './images/MIT.jpg'
-    },
-    {
-        name: 'Осака',
-        link: './images/osaka.jpg'
-    },
-    {
-        name: 'Сингапур',
-        link: './images/singapore.jpg'
-    },
-    {
-        name: 'Тбилиси',
-        link: './images/tbilisi.jpg'
-    }
-];
-
 const elementsList = document.querySelector('.elements__list');
 
 //popups control
@@ -100,9 +73,7 @@ function openNewElementPopup() {
     openPopup(newElementPopup);
     placeInput.value = '';
     urlInput.value = '';
-}
-function closeNewElementPopup() {
-    newElementPopup.classList.remove('popup_opened');
+    disableButton(newElementSubmitButton);
 }
 function newElementFormSubmitHandler(evt) {
     evt.preventDefault();
@@ -120,9 +91,10 @@ const elementTemplate = document.querySelector('#element-template').content;
 
 function createCard(elementPlace, elementUrl) {
     const newElement = elementTemplate.querySelector('.element').cloneNode(true);
-    newElement.querySelector('.element__image').src = elementUrl;
+    const newElementImage = newElement.querySelector('.element__image');
+    newElementImage.src = elementUrl;
     newElement.querySelector('.element__title').textContent = elementPlace;
-    newElement.querySelector('.element__image').alt = "Миниаютюра «" + elementPlace + "»";
+    newElementImage.alt = "Миниаютюра «" + elementPlace + "»";
 
     //card like feature
     const elementLikeButton = newElement.querySelector('.element__like');
@@ -148,7 +120,6 @@ function createCard(elementPlace, elementUrl) {
     return newElement;
 }
 
-//add initial cards
-for (let i = 0; i < initialCards.length; i++) {
-    elementsList.append(createCard(initialCards[i].name, initialCards[i].link));
-}
+initialCards.forEach((initialCard) => {
+    elementsList.append(createCard(initialCard.name, initialCard.link));
+});
