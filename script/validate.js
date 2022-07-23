@@ -24,7 +24,7 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-const disableButton = (buttonElement) => {
+export const disableButton = (buttonElement) => {
     buttonElement.classList.add(validationConfig.inactiveButtonClass);
     buttonElement.disabled = true;
 }

@@ -1,26 +1,26 @@
-const initialCards = [
+export const initialCards = [
     {
         name: 'Амстердам',
-        link: './images/amsterdam.jpg'
+        imageUrl: './images/amsterdam.jpg'
     },
     {
         name: 'Киев',
-        link: './images/kyiv.jpg'
+        imageUrl: './images/kyiv.jpg'
     },
     {
         name: 'Массачусетский технологический институт',
-        link: './images/MIT.jpg'
+        imageUrl: './images/MIT.jpg'
     },
     {
         name: 'Осака',
-        link: './images/osaka.jpg'
+        imageUrl: './images/osaka.jpg'
     },
     {
         name: 'Сингапур',
-        link: './images/singapore.jpg'
+        imageUrl: './images/singapore.jpg'
     },
     {
         name: 'Тбилиси',
-        link: './images/tbilisi.jpg'
+        imageUrl: './images/tbilisi.jpg'
     }
 ];
