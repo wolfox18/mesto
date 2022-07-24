@@ -1,6 +1,7 @@
 import { Card } from "./Card.js";
 import { initialCards } from "./initial-cards.js";
-import { disableButton } from "./validate.js";
+import { FormValidator } from "./FormValidator.js";
+
 const elementsList = document.querySelector(".elements__list");
 
 //popups control
@@ -75,7 +76,6 @@ function openNewElementPopup() {
   openPopup(newElementPopup);
   placeInput.value = "";
   urlInput.value = "";
-  disableButton(newElementSubmitButton);
 }
 
 newElementButton.addEventListener("click", openNewElementPopup);
@@ -92,11 +92,14 @@ const openImagePreviewPopup = (cardData) => {
   imagePreviewElement.alt = "Фотография «" + cardData.name + "»";
   imagePreviewElement.src = cardData.imageUrl;
   openPopup(imagePreviewPopup);
-  
 };
 
 const renderCard = (cardData, cardTemplateSelector) => {
-  const newCard = new Card(cardData, cardTemplateSelector, openImagePreviewPopup);
+  const newCard = new Card(
+    cardData,
+    cardTemplateSelector,
+    openImagePreviewPopup
+  );
   elementsList.prepend(newCard.generateCard());
 };
 
@@ -113,3 +116,17 @@ function newElementFormSubmitHandler(evt) {
 initialCards.forEach((initialCard) => {
   renderCard(initialCard, "#element-template");
 });
+
+const validationConfig = {
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__save-btn",
+  inactiveButtonClass: "button_inactive",
+  inputErrorClass: "popup__input_type_error",
+};
+
+Array.from(document.querySelectorAll('.popup__form')).forEach(
+  (formElement) => {
+    const validator = new FormValidator(validationConfig, formElement);
+    validator.enableValdation();
+  }
+);

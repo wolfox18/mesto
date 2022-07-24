@@ -1,9 +1,9 @@
 export class Card {
-  constructor(data, selector, openImagePreviewPopup) {
+  constructor(data, selector, openImagePreview) {
     this._imageUrl = data.imageUrl;
     this._name = data.name;
     this._selector = selector;
-    this._openImagePreviewPopup = openImagePreviewPopup;
+    this._openImagePreview = openImagePreview;
   }
 
   _generateTemplate() {
@@ -29,7 +29,7 @@ export class Card {
   }
   _setPreviewListener() {
     this._imageElement.addEventListener('click', () => {
-      this._openImagePreviewPopup({name: this._name, imageUrl: this._imageUrl});
+      this._openImagePreview({name: this._name, imageUrl: this._imageUrl});
     });
   }
 
