@@ -32,7 +32,7 @@ export class FormValidator {
       `.${inputElement.id}-error`
     );
     inputElement.classList.remove(this._inputErrorClass);
-    errorElement.textContent = '';
+    errorElement.textContent = "";
   }
 
   _disableSubmitButton() {
@@ -54,7 +54,7 @@ export class FormValidator {
     if (this._hasInvalidInput()) {
       this._disableSubmitButton();
     } else {
-        this._enableSubmitButton();
+      this._enableSubmitButton();
     }
   }
 
@@ -68,7 +68,10 @@ export class FormValidator {
     });
   }
 
-  enableValdation() {
+  enableValidation() {
     this._setEventListners();
+  }
+  resetValidation() {
+    this._toggleButtonState();
   }
 }
