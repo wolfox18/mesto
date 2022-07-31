@@ -1,0 +1,25 @@
+{
+  "name": "yandex-praktikum",
+  "version": "0.0.1",
+  "description": "Данная страница разработана в процессе работы над 4, 5, 6 и 7 проектом программы ЯндексПрактикума - Веб-разработчик.\r Студент - Николай Шикалено\r Страаница веб-приложения Mesto - которое помогает организовывать фотографии за авторством и ставить им лайки.",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist && webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wolfox18/mesto.git"
+  },
+  "author": "Nikolay Shikalenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wolfox18/mesto/issues"
+  },
+  "homepage": "https://github.com/wolfox18/mesto#readme",
+  "devDependencies": {
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3"
+  }
+}
