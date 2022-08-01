@@ -1,55 +1,54 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path'); // стандартная утилита Node.js для построения путей
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: {
-    main: "./src/index.js",
-  },
+  // __dirname - глобальная константа, указывающая на каталог, гле лежит этот файл
+  entry: path.resolve(__dirname, 'src', 'main.js'),
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "main.js",
-    publicPath: "",
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[contenthash].js', // contenthash каждый раз новый, чтобы файлы не кэшировались
+    clean: true, // удалять каталог dist
   },
-  mode: "development",
-  devServer: {
-    static: path.resolve(__dirname, "./dist"),
-    open: true,
-    compress: true,
-    port: 8081,
-  },
+  devtool: 'inline-source-map', // показывает ошибки в исходных файлах
   module: {
     rules: [
+      // загружаем js-библиотеки
       {
         test: /\.js$/,
-        use: "babel-loader",
-        exclude: "/node_modules/",
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
       },
+      // загружаем изображения и шрифты
       {
-        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
-        type: "asset/resource",
+        test: /\.(png|svg|jpg|gif|ico|woff(2)?|eot|ttf|otf)$/,
+        type: 'asset/resource',
       },
+      // загружаем css
       {
         test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: "css-loader",
-            options: {
-              importLoaders: 1,
-            },
+            loader: 'css-loader',
+            options: { importLoaders: 1 },
           },
-          "postcss-loader",
+          'postcss-loader',
         ],
       },
     ],
   },
   plugins: [
+    // подключаем плагин, загружаем html
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: path.resolve(__dirname, 'src', 'index.html'),
     }),
-    new CleanWebpackPlugin(),
+    // подключаем плагин
     new MiniCssExtractPlugin(),
   ],
 };

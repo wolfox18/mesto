@@ -1,6 +1,6 @@
-import { Card } from "./Card.js";
-import { initialCards } from "../script/initial-cards.js";
-import { FormValidator } from "../script/FormValidator.js";
+import { Card } from "./Card"
+import { initialCards } from "./initial-cards.js";
+import { FormValidator } from "./FormValidator.js";
 import './styles/index.css';
 
 //блок констант

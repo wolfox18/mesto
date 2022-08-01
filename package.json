@@ -1,38 +1,63 @@
 {
-  "name": "yandex-praktikum",
-  "version": "0.0.1",
-  "description": "Данная страница разработана в процессе работы над 4, 5, 6 и 7 проектом программы ЯндексПрактикума - Веб-разработчик.\r Студент - Николай Шикалено\r Страаница веб-приложения Mesto - которое помогает организовывать фотографии за авторством и ставить им лайки.",
-  "main": "index.js",
+  "name": "@melodyn/practicum-webpack",
+  "private": true,
+  "main": "src/main.js",
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack serve"
+    "dev": "webpack serve --mode development --open"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wolfox18/mesto.git"
+  "dependencies": {
+    "core-js": "^3.23.5"
   },
-  "author": "Nikolay Shikalenko",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/wolfox18/mesto/issues"
-  },
-  "homepage": "https://github.com/wolfox18/mesto#readme",
   "devDependencies": {
+    "@babel/cli": "^7.18.9",
     "@babel/core": "^7.18.9",
     "@babel/preset-env": "^7.18.9",
-    "autoprefixer": "^10.4.8",
+
     "babel-loader": "^8.2.5",
-    "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
+    "style-loader": "^3.3.1",
+    "postcss-loader": "^7.0.1",
+
+    "autoprefixer": "^10.4.7",
     "cssnano": "^5.1.12",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",
-    "postcss-loader": "^7.0.1",
-    "webpack": "^5.74.0",
+
+    "postcss": "^8.4.14",
+    "postcss-prefixer": "^2.1.3",
+    "postcss-preset-env": "^7.7.2",
+
+    "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.3"
   },
-  "dependencies": {
-    "core-js": "^3.24.1"
+  "//": {
+    "core-js": "набор JS-функций для старых браузеров",
+
+    "// babel": "библиотека для преобразования нового кода в старый",
+    "@babel/cli": "утилита для вызова консольных команд",
+    "@babel/core": "основной код библиотеки для её работы",
+    "@babel/preset-env": "стандартный набор инструментов для преобразования JS-кода",
+
+    "// loader": "загрузчики файлов для Webpack",
+    "babel-loader": "загрузчик JS-файлов в Webpack",
+    "css-loader": "загрузчик CSS-файлов в Webpack",
+    "style-loader": "загрузчик CSS в HTML",
+    "postcss-loader": "загрузчик CSS из JS",
+
+    "autoprefixer": "добавляет в CSS вендорные префиксы --moz, --ms, --webkit",
+    "cssnano": "минифицирует CSS",
+
+    "html-webpack-plugin": "позволяет генерировать и изменять HTML-файл",
+    "mini-css-extract-plugin": "обрабатывает CSS файлы, связанные с JS",
+
+    "postcss": "библиотека для продвинутой работы с CSS",
+    "postcss-prefixer": "адаптер для postcss и autoprefixer",
+    "postcss-preset-env": "стандартный набор инструментов для преобразования CSS-кода",
+
+    "webpack": "библиотека Webpack",
+    "webpack-cli": "утилита для вызова консольных команд",
+    "webpack-dev-server": "сервер для разработчика"
   }
 }
