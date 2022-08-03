@@ -1,7 +1,7 @@
 {
-  "name": "@melodyn/practicum-webpack",
+  "name": "practicum-webpack",
   "private": true,
-  "main": "src/main.js",
+  "main": "src/index.js",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack serve --mode development --open"

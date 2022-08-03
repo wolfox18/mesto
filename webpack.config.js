@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   // __dirname - глобальная константа, указывающая на каталог, гле лежит этот файл
-  entry: path.resolve(__dirname, 'src', 'main.js'),
+  entry: path.resolve(__dirname, 'src', 'index.js'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js', // contenthash каждый раз новый, чтобы файлы не кэшировались
