@@ -1,13 +1,13 @@
 export class Card {
-  constructor(data, selector, openImagePreview) {
+  constructor(data, selector, handleCardClick) {
     this._imageUrl = data.imageUrl;
     this._name = data.name;
     this._selector = selector;
-    this._openImagePreview = openImagePreview;
+    this._handleCardClick = handleCardClick;
   }
 
   _generateTemplate() {
-    const newElement = document
+    const template = document
       .querySelector(this._selector)
       .content.querySelector(".element")
       .cloneNode(true);
@@ -30,7 +30,7 @@ export class Card {
   }
   _setPreviewListener() {
     this._imageElement.addEventListener("click", () => {
-      this._openImagePreview({ name: this._name, imageUrl: this._imageUrl });
+      this._handleCardClick({ name: this._name, imageUrl: this._imageUrl });
     });
   }
   _setEventListeners() {
