@@ -1,5 +1,3 @@
-// import { forEach } from "core-js/core/array";
-
 export class Section {
   constructor({ items, renderer }, containerSelector) {
     this._items = items;

@@ -44,26 +44,26 @@
       </section>
       <section class="elements">
         <ul class="elements__list">
-          <template id="element-template">
-            <li class="element">
-              <button class="element__delete-button transparent-btn"></button>
-              <img src="#" alt="" class="element__image" />
-              <div class="element__info">
-                <h2 class="element__title"></h2>
-                <button
-                  aria-label="Нравится"
-                  type="button"
-                  class="element__like transparent-btn transparent-btn_opacity_medium"
-                ></button>
-              </div>
-            </li>
-          </template>
         </ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
+    <template id="element-template">
+      <li class="element">
+        <button class="element__delete-button transparent-btn"></button>
+        <img src="#" alt="" class="element__image" />
+        <div class="element__info">
+          <h2 class="element__title"></h2>
+          <button
+            aria-label="Нравится"
+            type="button"
+            class="element__like transparent-btn transparent-btn_opacity_medium"
+          ></button>
+        </div>
+      </li>
+    </template>
     <div class="popup popup_type_profile">
       <div class="popup__container popup__container_type_form">
         <button
@@ -78,25 +78,25 @@
             required
             placeholder="Имя"
             type="text"
-            id="input-name"
+            id="name"
             value="Жак-Ив Кусто"
             minlength="2"
             maxlength="40"
             class="popup__input popup__input_type_name"
           />
-          <span class="popup__error-message input-name-error"></span>
+          <span class="popup__error-message name-error"></span>
           <input
             name="description"
             required
             placeholder="Информация"
             type="text"
-            id="input-description"
+            id="bio"
             value="Исследователь океана"
             minlength="2"
             maxlength="200"
             class="popup__input popup__input_type_description"
           />
-          <span class="popup__error-message input-description-error"></span>
+          <span class="popup__error-message bio-error"></span>
           <button
             aria-label="Сохранить"
             type="submit"
@@ -121,23 +121,23 @@
             required
             placeholder="Название"
             type="text"
-            id="input-place"
+            id="place"
             value=""
             minlength="2"
             maxlength="30"
             class="popup__input popup__input_type_place"
           />
-          <span class="popup__error-message input-place-error"></span>
+          <span class="popup__error-message place-error"></span>
           <input
             name="url"
             required
             placeholder="Ссылка на картинку"
-            id="input-url"
+            id="url"
             type="url"
             value=""
             class="popup__input popup__input_type_url"
           />
-          <span class="popup__error-message input-url-error"></span>
+          <span class="popup__error-message url-error"></span>
           <button
             aria-label="Сохранить"
             type="submit"
