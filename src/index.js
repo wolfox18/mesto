@@ -18,17 +18,15 @@ const userPopup = new PopupWithForm({
   inputSelector: ".popup__input",
   formSelector: ".popup__form",
   handleFormSubmit: (inputData) => {
-    userInfo.setUserInfo({
-      name: inputData.name,
-      bio: inputData.bio,
-    });
+    userInfo.setUserInfo(inputData);
   },
 });
 userPopup.setEventListeners();
 document
   .querySelector(".profile__edit-btn")
   .addEventListener("click", (evt) => {
-    userPopup.open(userInfo.getUserInfo());
+    userPopup.setInputValues(userInfo.getUserInfo());
+    userPopup.open();
   });
 //работа попапа с превью
 const popupWithImage = new PopupWithImage({
@@ -38,9 +36,9 @@ const popupWithImage = new PopupWithImage({
   nameSelector: ".popup__image-name",
   imageSelector: ".popup__image",
 });
+popupWithImage.setEventListeners();
 const openImagePreviewPopup = (cardData) => {
   popupWithImage.open(cardData);
-  popupWithImage.setEventListeners();
 };
 //создание первоначальных карточек
 const cardList = new Section(
@@ -67,10 +65,7 @@ const newElementPopup = new PopupWithForm({
   formSelector: ".popup__form",
   handleFormSubmit: (inputData) => {
     const newCard = new Card(
-      {
-        imageUrl: inputData.url,
-        name: inputData.place,
-      },
+      inputData,
       "#element-template",
       openImagePreviewPopup
     );

@@ -4,14 +4,13 @@ export class UserInfo {
     this._bioElement = document.querySelector(data.bioSelector);
   }
   getUserInfo() {
-    const userData = {
+    return {
       name: this._nameElement.textContent,
       bio: this._bioElement.textContent,
     };
-    return userData;
   }
-  setUserInfo(userData) {
-    this._nameElement.textContent = userData.name;
-    this._bioElement.textContent = userData.bio;
+  setUserInfo({name, bio}) {
+    this._nameElement.textContent = name;
+    this._bioElement.textContent = bio;
   }
 }

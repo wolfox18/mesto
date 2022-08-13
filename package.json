@@ -31,33 +31,6 @@
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.3"
-  },
-  "//": {
-    "core-js": "набор JS-функций для старых браузеров",
-
-    "// babel": "библиотека для преобразования нового кода в старый",
-    "@babel/cli": "утилита для вызова консольных команд",
-    "@babel/core": "основной код библиотеки для её работы",
-    "@babel/preset-env": "стандартный набор инструментов для преобразования JS-кода",
-
-    "// loader": "загрузчики файлов для Webpack",
-    "babel-loader": "загрузчик JS-файлов в Webpack",
-    "css-loader": "загрузчик CSS-файлов в Webpack",
-    "style-loader": "загрузчик CSS в HTML",
-    "postcss-loader": "загрузчик CSS из JS",
-
-    "autoprefixer": "добавляет в CSS вендорные префиксы --moz, --ms, --webkit",
-    "cssnano": "минифицирует CSS",
-
-    "html-webpack-plugin": "позволяет генерировать и изменять HTML-файл",
-    "mini-css-extract-plugin": "обрабатывает CSS файлы, связанные с JS",
-
-    "postcss": "библиотека для продвинутой работы с CSS",
-    "postcss-prefixer": "адаптер для postcss и autoprefixer",
-    "postcss-preset-env": "стандартный набор инструментов для преобразования CSS-кода",
-
-    "webpack": "библиотека Webpack",
-    "webpack-cli": "утилита для вызова консольных команд",
-    "webpack-dev-server": "сервер для разработчика"
   }
+  
 }

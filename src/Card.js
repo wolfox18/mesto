@@ -7,11 +7,10 @@ export class Card {
   }
 
   _generateTemplate() {
-    const newElement = document
+    return document
       .querySelector(this._selector)
       .content.querySelector(".element")
       .cloneNode(true);
-    return newElement;
   }
 
   _addLikeListener() {
@@ -44,7 +43,7 @@ export class Card {
     this._likeButtonElement = this._cardElement.querySelector(".element__like");
     this._imageElement = this._cardElement.querySelector(".element__image");
     this._imageElement.src = this._imageUrl;
-    this._imageElement.alt = "Миниаютюра «" + this._name + "»";
+    this._imageElement.alt = this._name;
     this._cardElement.querySelector(".element__title").textContent = this._name;
     this._setEventListeners();
     return this._cardElement;

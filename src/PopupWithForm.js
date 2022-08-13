@@ -11,7 +11,7 @@ export class PopupWithForm extends Popup {
   _getInputValues() {
     this._inputData = {};
     this._inputList.forEach((input) => {
-      this._inputData[input.id] = input.value;
+      this._inputData[input.name] = input.value;
     });
     return this._inputData;
   }
@@ -27,14 +27,9 @@ export class PopupWithForm extends Popup {
     super.close();
     this._formElement.reset();
   }
-  open(inputData) {
+  setInputValues(inputData) {
     this._inputList.forEach((input) => {
-      if ((inputData == null)) {
-        input.value = "";
-      } else {
-        input.value = inputData[input.id];
-      }
+      input.value = inputData[input.name];
     });
-    super.open();
   }
 }
