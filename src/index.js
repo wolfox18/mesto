@@ -6,17 +6,12 @@ import { PopupWithForm } from "./PopupWithForm.js";
 import { PopupWithImage } from "./PopupWithImage.js";
 import { UserInfo } from "./UserInfo.js";
 import "./styles/index.css";
-import { validationConfig, formValidators } from "./constants.js";
+import { validationConfig, formValidators, popupsConfig } from "./constants.js";
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   bioSelector: ".profile__description",
 });
-const userPopup = new PopupWithForm({
-  popupSelector: ".popup_type_profile",
-  openedClass: "popup_opened",
-  closeButtonSelector: ".popup__close-btn",
-  inputSelector: ".popup__input",
-  formSelector: ".popup__form",
+const userPopup = new PopupWithForm(popupsConfig, ".popup_type_profile", {
   handleFormSubmit: (inputData) => {
     userInfo.setUserInfo(inputData);
   },
@@ -29,13 +24,7 @@ document
     userPopup.open();
   });
 //работа попапа с превью
-const popupWithImage = new PopupWithImage({
-  popupSelector: ".popup_type_image",
-  openedClass: "popup_opened",
-  closeButtonSelector: ".popup__close-btn",
-  nameSelector: ".popup__image-name",
-  imageSelector: ".popup__image",
-});
+const popupWithImage = new PopupWithImage(popupsConfig, ".popup_type_image");
 popupWithImage.setEventListeners();
 const openImagePreviewPopup = (cardData) => {
   popupWithImage.open(cardData);
@@ -57,12 +46,7 @@ const cardList = new Section(
   ".elements__list"
 );
 cardList.renderItems();
-const newElementPopup = new PopupWithForm({
-  popupSelector: ".popup_type_new-element",
-  openedClass: "popup_opened",
-  closeButtonSelector: ".popup__close-btn",
-  inputSelector: ".popup__input",
-  formSelector: ".popup__form",
+const newElementPopup = new PopupWithForm(popupsConfig, ".popup_type_new-element", {
   handleFormSubmit: (inputData) => {
     const newCard = new Card(
       inputData,
