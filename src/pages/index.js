@@ -1,12 +1,12 @@
-import { Card } from "./Card.js";
-import { initialCards } from "./initial-cards.js";
-import { FormValidator } from "./FormValidator.js";
-import { Section } from "./Section.js";
-import { PopupWithForm } from "./PopupWithForm.js";
-import { PopupWithImage } from "./PopupWithImage.js";
-import { UserInfo } from "./UserInfo.js";
-import "./styles/index.css";
-import { validationConfig, formValidators, popupsConfig } from "./constants.js";
+import { Card } from "../components/Card.js";
+import { initialCards } from "../utils/initial-cards.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { Section } from "../components/Section.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { UserInfo } from "../components/UserInfo.js";
+import "./index.css";
+import { validationConfig, formValidators, popupsConfig } from "../utils/constants.js";
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   bioSelector: ".profile__description",
@@ -29,18 +29,21 @@ popupWithImage.setEventListeners();
 const openImagePreviewPopup = (cardData) => {
   popupWithImage.open(cardData);
 };
+//функция создания карточки
+const createCard = (data) => {
+  const newCard = new Card(
+    data,
+    "#element-template",
+    openImagePreviewPopup
+  );
+  return newCard.generateCard();
+}
 //создание первоначальных карточек
 const cardList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const newCard = new Card(
-        item,
-        "#element-template",
-        openImagePreviewPopup
-      );
-      const cardElement = newCard.generateCard();
-      cardList.addItem(cardElement);
+      cardList.addItem(createCard(item));
     },
   },
   ".elements__list"
@@ -48,13 +51,7 @@ const cardList = new Section(
 cardList.renderItems();
 const newElementPopup = new PopupWithForm(popupsConfig, ".popup_type_new-element", {
   handleFormSubmit: (inputData) => {
-    const newCard = new Card(
-      inputData,
-      "#element-template",
-      openImagePreviewPopup
-    );
-    const cardElement = newCard.generateCard();
-    cardList.addItem(cardElement);
+    cardList.addItem(createCard(inputData));
   },
 });
 newElementPopup.setEventListeners();
@@ -64,7 +61,6 @@ document
     formValidators["card-form"].resetValidation();
     newElementPopup.open();
   });
-
 // Включение валидации
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
@@ -75,5 +71,4 @@ const enableValidation = (config) => {
     validator.enableValidation();
   });
 };
-
 enableValidation(validationConfig);

@@ -1,4 +1,4 @@
-const kyivUrl = new URL('./images/kyiv.jpg', import.meta.url);
+const kyivUrl = new URL('../images/kyiv.jpg', import.meta.url);
 export const initialCards = [
     {
         name: 'Амстердам',
