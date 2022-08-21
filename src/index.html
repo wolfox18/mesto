@@ -19,14 +19,10 @@
     </header>
     <main>
       <section class="profile">
-        <img
-          src="<%=require('./images/cousteau-photo.jpg')%>"
-          alt="Аватар пользователя"
-          class="profile__avatar"
-        />
+        <img src="" alt="Аватар пользователя" class="profile__avatar" />
         <div class="profile__info">
           <div class="profile__name-block">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name">profile name</h1>
             <button
               aria-label="Редактировать профиль"
               type="button"
@@ -34,7 +30,7 @@
             ></button>
           </div>
 
-          <p class="profile__description">Исследователь океана</p>
+          <p class="profile__description">profile bio</p>
         </div>
         <button
           aria-label="Добавить запись"
@@ -43,8 +39,7 @@
         ></button>
       </section>
       <section class="elements">
-        <ul class="elements__list">
-        </ul>
+        <ul class="elements__list"></ul>
       </section>
     </main>
     <footer class="footer">
@@ -56,11 +51,14 @@
         <img src="#" alt="" class="element__image" />
         <div class="element__info">
           <h2 class="element__title"></h2>
-          <button
-            aria-label="Нравится"
-            type="button"
-            class="element__like transparent-btn transparent-btn_opacity_medium"
-          ></button>
+          <div class="element__like-container">
+            <button
+              aria-label="Нравится"
+              type="button"
+              class="element__like transparent-btn transparent-btn_opacity_medium"
+            ></button>
+            <p class="element__like-counter">1</p>
+          </div>
         </div>
       </li>
     </template>
@@ -86,7 +84,7 @@
           />
           <span class="popup__error-message name-error"></span>
           <input
-            name="bio"
+            name="about"
             required
             placeholder="Информация"
             type="text"
@@ -129,7 +127,7 @@
           />
           <span class="popup__error-message place-error"></span>
           <input
-            name="imageUrl"
+            name="link"
             required
             placeholder="Ссылка на картинку"
             id="url"
@@ -158,6 +156,25 @@
         ></button>
         <img src="#" alt="" class="popup__image" />
         <p class="popup__image-name"></p>
+      </div>
+    </div>
+    <div class="popup popup_type_confirm">
+      <div class="popup__container popup__container_type_form">
+        <button
+          aria-label="Закрыть"
+          type="button"
+          class="popup__close-btn transparent-btn"
+        ></button>
+        <form name="delete-confirm" class="popup__form" novalidate>
+          <h2 class="popup__title popup__title_type_question">Вы уверены?</h2>
+          <button
+            aria-label="Да"
+            type="submit"
+            class="popup__save-btn transparent-btn transparent-btn_opacity_hard"
+          >
+            Да
+          </button>
+        </form>
       </div>
     </div>
   </body>

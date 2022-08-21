@@ -13,4 +13,5 @@ export const popupsConfig = {
   formSelector: ".popup__form",
   nameSelector: ".popup__image-name",
   imageSelector: ".popup__image"
-}
+};
+export const userId = "9d0db56c218a92f4247448d8";

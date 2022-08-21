@@ -13,7 +13,11 @@ export class Section {
       this._renderer(item);
     });
   }
-  addItem(element) {
-    this._container.prepend(element);
+  addItem(element, isInStart) {
+    if (isInStart) {
+      this._container.prepend(element);
+    } else {
+      this._container.append(element);
+    }
   }
 }
