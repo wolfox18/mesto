@@ -19,7 +19,10 @@
     </header>
     <main>
       <section class="profile">
-        <img src="" alt="Аватар пользователя" class="profile__avatar" />
+        <div class="profile__avatar-container">
+          <img src="" alt="Аватар пользователя" class="profile__avatar" />
+          <button class="profile__change-avatar"></button>
+        </div>
         <div class="profile__info">
           <div class="profile__name-block">
             <h1 class="profile__name">profile name</h1>
@@ -137,7 +140,7 @@
           />
           <span class="popup__error-message url-error"></span>
           <button
-            aria-label="Сохранить"
+            aria-label="Создать"
             type="submit"
             name="new-place-submit-button"
             class="popup__save-btn transparent-btn transparent-btn_opacity_hard"
@@ -173,6 +176,36 @@
             class="popup__save-btn transparent-btn transparent-btn_opacity_hard"
           >
             Да
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_type_change-avatar">
+      <div class="popup__container popup__container_type_form">
+        <button
+          aria-label="Закрыть"
+          type="button"
+          class="popup__close-btn transparent-btn"
+        ></button>
+        <form name="avatar-form" class="popup__form">
+          <h2 class="popup__title">Обновить аватар</h2>
+          <input
+            name="link"
+            required
+            placeholder="Ссылка на аватар"
+            id="avatar-url"
+            type="url"
+            value=""
+            class="popup__input popup__input_type_url"
+          />
+          <span class="popup__error-message avatar-url-error"></span>
+          <button
+            aria-label="Сохранить"
+            type="submit"
+            name="change-avatar-submit-button"
+            class="popup__save-btn transparent-btn transparent-btn_opacity_hard"
+          >
+            Сохранить
           </button>
         </form>
       </div>

@@ -34,7 +34,6 @@ const userInfo = new UserInfo({
 api
   .getUserInfo()
   .then((data) => {
-    console.log(data);
     userInfo.setUserInfo(data);
   })
   .catch((err) => {
@@ -43,7 +42,8 @@ api
 
 //изменение данных пользователя
 const userPopup = new PopupWithForm(popupsConfig, ".popup_type_profile", {
-  handleFormSubmit: (inputData) => {
+  handleFormSubmit: (inputData, showLoading) => {
+    showLoading(true);
     api
       .patchUserInfo(inputData)
       .then((data) => {
@@ -51,7 +51,7 @@ const userPopup = new PopupWithForm(popupsConfig, ".popup_type_profile", {
       })
       .catch((err) => {
         console.log("Ошибка API при обновлении данных пользователя!", err);
-      });
+      }).finally(showLoading(false));
   },
 });
 userPopup.setEventListeners();
@@ -86,28 +86,27 @@ const createCard = (data) => {
       handleDeleteClick: (cardElement, cardId) => {
         popupConfirmDeleteCard.open(() => {
           cardElement.remove();
-          console.log("Типа удаление карточки №", cardId);
           api.deleteCard(cardId);
         });
       },
-      changeLikes: (cardId, action) => {
-        if (action === "add") {
+      changeLike: (cardData, isLiked, likeCallback) => {
+        if (isLiked) {
           api
-            .addLike(cardId)
+            .deleteLike(cardData._id)
             .then((data) => {
-              return data.likes.length;
-            })
-            .catch((err) => {
-              console.log("Ошибка API при установке лайка!", err);
-            });
-        } else {
-          api
-            .deleteLike(cardId)
-            .then((data) => {
-              return data.likes.length;
+              likeCallback(data.likes);
             })
             .catch((err) => {
               console.log("Ошибка API при удалении лайка!", err);
+            });
+        } else {
+          api
+            .addLike(cardData._id)
+            .then((data) => {
+              likeCallback(data.likes);
+            })
+            .catch((err) => {
+              console.log("Ошибка API при установке лайка!", err);
             });
         }
       },
@@ -130,7 +129,6 @@ const cardList = new Section(
 api
   .getInitialCards()
   .then((data) => {
-    console.log("Первоначальные карточки ", data);
     data.forEach((item) => cardList.addItem(createCard(item), false));
   })
   .catch((err) => {
@@ -142,8 +140,8 @@ const newElementPopup = new PopupWithForm(
   popupsConfig,
   ".popup_type_new-element",
   {
-    handleFormSubmit: (inputData) => {
-      console.log(inputData);
+    handleFormSubmit: (inputData, showLoading) => {
+      showLoading(true);
       api
         .postNewCard(inputData)
         .then((data) => {
@@ -152,7 +150,8 @@ const newElementPopup = new PopupWithForm(
         })
         .catch((err) => {
           console.log("Ошибка API при загрузке карточек!", err);
-        });
+        })
+        .finally(showLoading(false));
     },
   }
 );
@@ -163,6 +162,34 @@ document
     formValidators["card-form"].resetValidation();
     newElementPopup.open();
   });
+
+//аватар
+const avatarElement = document.querySelector(".profile__avatar");
+const avatarPopup = new PopupWithForm(
+  popupsConfig,
+  ".popup_type_change-avatar",
+  {
+    handleFormSubmit: (inputData, showLoading) => {
+      showLoading(true);
+      api
+        .changeAvatar(inputData.link)
+        .then(() => {
+          avatarElement.src = inputData.link;
+        })
+        .catch((err) => {
+          console.log("Ошибка API при обновлении аватара!", err);
+        })
+        .finally(showLoading(false));
+    },
+  }
+);
+avatarPopup.setEventListeners();
+document
+  .querySelector(".profile__change-avatar")
+  .addEventListener("click", (evt) => {
+    avatarPopup.open();
+  });
+
 // Включение валидации
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));

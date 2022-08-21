@@ -3,16 +3,16 @@ export class Api {
     this._url = data.baseUrl;
     this._headers = data.headers;
   }
-  _handleResponse(res){
+  _handleResponse(res) {
     if (res.ok) {
-        return res.json();
-      }
-      throw new Error("Ошибка внутри API!");
+      return res.json();
+    }
+    throw new Error("Ошибка внутри API!");
   }
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
-        headers: this._headers,
-      }).then(this._handleResponse);
+      headers: this._headers,
+    }).then(this._handleResponse);
   }
 
   getUserInfo() {
@@ -20,38 +20,46 @@ export class Api {
       headers: this._headers,
     }).then(this._handleResponse);
   }
-  patchUserInfo(userData){
+  patchUserInfo(userData) {
     return fetch(`${this._url}/users/me`, {
-        method: 'PATCH',
-        headers: this._headers,
-        body: JSON.stringify(userData)
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify(userData),
     }).then(this._handleResponse);
   }
-  postNewCard(cardData){
+  postNewCard(cardData) {
     return fetch(`${this._url}/cards`, {
-        method: 'POST',
-        headers: this._headers,
-        body: JSON.stringify(cardData)
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify(cardData),
     }).then(this._handleResponse);
   }
-  deleteCard(cardId){
+  deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
-      method: 'DELETE',
-      headers: this._headers
-  }).then(this._handleResponse);
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._handleResponse);
   }
-  addLike(cardId){
+  addLike(cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
-      method: 'PUT',
-      headers: this._headers
-  }).then(this._handleResponse);
+      method: "PUT",
+      headers: this._headers,
+    }).then(this._handleResponse);
   }
-  deleteLike(cardId){
+  deleteLike(cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
-      method: 'DELETE',
-      headers: this._headers
-  }).then(this._handleResponse);
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._handleResponse);
   }
-
+  changeAvatar(url) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: url
+      })
+    }).then(this._handleResponse);
+  }
   // другие методы работы с API
 }
