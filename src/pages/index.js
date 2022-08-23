@@ -8,10 +8,9 @@ import "./index.css";
 import {
   validationConfig,
   formValidators,
-  popupsConfig,
-  userId,
+  popupsConfig
 } from "../utils/constants.js";
-
+const cardList = new Section(".elements__list");
 //подключаем апи
 import { Api } from "../components/Api.js";
 import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
@@ -30,19 +29,9 @@ const userInfo = new UserInfo({
   avatarSelector: ".profile__avatar",
 });
 
-//заполняем данными с сервера
-api
-  .getUserInfo()
-  .then((data) => {
-    userInfo.setUserInfo(data);
-  })
-  .catch((err) => {
-    console.log("Ошибка API при загрузке данных пользователя!", err);
-  });
-
 //изменение данных пользователя
 const userPopup = new PopupWithForm(popupsConfig, ".popup_type_profile", {
-  handleFormSubmit: (inputData, showLoading) => {
+  handleFormSubmit: (inputData, showLoading, handleCloseForm) => {
     showLoading(true);
     api
       .patchUserInfo(inputData)
@@ -51,14 +40,20 @@ const userPopup = new PopupWithForm(popupsConfig, ".popup_type_profile", {
       })
       .catch((err) => {
         console.log("Ошибка API при обновлении данных пользователя!", err);
-      }).finally(showLoading(false));
+      })
+      .finally(() => {
+        showLoading(false);
+        handleCloseForm();
+      });
   },
 });
+//работа попапа изменения данных пользователя
 userPopup.setEventListeners();
 document
   .querySelector(".profile__edit-btn")
   .addEventListener("click", (evt) => {
     userPopup.setInputValues(userInfo.getUserInfo());
+    formValidators["profile-form"].resetValidation();
     userPopup.open();
   });
 
@@ -83,12 +78,15 @@ const createCard = (data) => {
     "#element-template",
     {
       handleCardClick: openImagePreviewPopup,
-      handleDeleteClick: (cardElement, cardId) => {
+      handleDeleteClick: (card, cardId) => {
         popupConfirmDeleteCard.open(() => {
-          cardElement.remove();
-          api.deleteCard(cardId);
+          card.deleteCard();
+          api
+            .deleteCard(cardId)
+            .catch((err) => console.log("Ошибка при удалении карточки!", err));
         });
       },
+
       changeLike: (cardData, isLiked, likeCallback) => {
         if (isLiked) {
           api
@@ -111,47 +109,42 @@ const createCard = (data) => {
         }
       },
     },
-    userId
+    userInfo.getUserInfo()._id
   );
   return newCard.generateCard();
 };
 
-//создание первоначальных карточек
-const cardList = new Section(
-  {
-    items: {},
-    renderer: (item) => {
-      cardList.addItem(createCard(item));
-    },
-  },
-  ".elements__list"
-);
-api
-  .getInitialCards()
-  .then((data) => {
-    data.forEach((item) => cardList.addItem(createCard(item), false));
+
+//создание первоначальных карточек и заполнение данных пользователя
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, initialCards]) => {
+    userInfo.setUserInfo(userData);
+    initialCards.forEach((item) => cardList.addItem(createCard(item), false));
   })
   .catch((err) => {
-    console.log("Ошибка API при загрузке карточек!", err);
+    console.log("Ошибка API при загрузке первоначальных данных!", err);
   });
+
 
 //добавление новой карточки
 const newElementPopup = new PopupWithForm(
   popupsConfig,
   ".popup_type_new-element",
   {
-    handleFormSubmit: (inputData, showLoading) => {
+    handleFormSubmit: (inputData, showLoading, handleCloseForm) => {
       showLoading(true);
       api
         .postNewCard(inputData)
         .then((data) => {
-          console.log("Новая карточка ", data);
           cardList.addItem(createCard(data), true);
         })
         .catch((err) => {
           console.log("Ошибка API при загрузке карточек!", err);
         })
-        .finally(showLoading(false));
+        .finally(() => {
+          showLoading(false);
+          handleCloseForm();
+        });
     },
   }
 );
@@ -169,7 +162,7 @@ const avatarPopup = new PopupWithForm(
   popupsConfig,
   ".popup_type_change-avatar",
   {
-    handleFormSubmit: (inputData, showLoading) => {
+    handleFormSubmit: (inputData, showLoading, handleCloseForm) => {
       showLoading(true);
       api
         .changeAvatar(inputData.link)
@@ -179,7 +172,10 @@ const avatarPopup = new PopupWithForm(
         .catch((err) => {
           console.log("Ошибка API при обновлении аватара!", err);
         })
-        .finally(showLoading(false));
+        .finally(() => {
+          showLoading(false);
+          handleCloseForm();
+        });
     },
   }
 );
@@ -187,6 +183,7 @@ avatarPopup.setEventListeners();
 document
   .querySelector(".profile__change-avatar")
   .addEventListener("click", (evt) => {
+    formValidators["avatar-form"].resetValidation();
     avatarPopup.open();
   });
 

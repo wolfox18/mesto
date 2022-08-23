@@ -8,11 +8,13 @@ export class UserInfo {
     return {
       name: this._nameElement.textContent,
       about: this._bioElement.textContent,
+      _id: this._id,
     };
   }
-  setUserInfo({name, about, avatar}) {
+  setUserInfo({ name, about, avatar, _id }) {
     this._nameElement.textContent = name;
     this._bioElement.textContent = about;
     this._avatarElement.src = avatar;
+    this._id = _id;
   }
 }

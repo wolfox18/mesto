@@ -9,12 +9,12 @@ export class Api {
     }
     throw new Error("Ошибка внутри API!");
   }
+  
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       headers: this._headers,
     }).then(this._handleResponse);
   }
-
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
       headers: this._headers,
@@ -61,5 +61,4 @@ export class Api {
       })
     }).then(this._handleResponse);
   }
-  // другие методы работы с API
 }

@@ -15,4 +15,3 @@ export const popupsConfig = {
   imageSelector: ".popup__image",
   submitButtonSelector: ".popup__save-btn"
 };
-export const userId = "9d0db56c218a92f4247448d8";

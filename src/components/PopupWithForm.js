@@ -2,7 +2,7 @@ import { Popup } from "./Popup";
 export class PopupWithForm extends Popup {
   constructor(data, popupsSelector, callbacks) {
     super(data, popupsSelector);
-    this._formElement = this._element.querySelector(data.formSelector);
+    this._formElement = this._popupElement.querySelector(data.formSelector);
     this._inputList = Array.from(
       this._formElement.querySelectorAll(data.inputSelector)
     );
@@ -22,14 +22,19 @@ export class PopupWithForm extends Popup {
   setEventListeners() {
     this._formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._handleFormSubmit(this._getInputValues(), (isLoading) => {
-        if (isLoading) {
-          this._submitButton.textContent = "Сохранение...";
-        } else {
-          this._submitButton.textContent = this._initialSubmitText;
+      this._handleFormSubmit(
+        this._getInputValues(),
+        (isLoading) => {
+          if (isLoading) {
+            this._submitButton.textContent = "Сохранение...";
+          } else {
+            this._submitButton.textContent = this._initialSubmitText;
+          }
+        },
+        () => {
+          this.close();
         }
-      });
-      this.close();
+      );
     });
     super.setEventListeners();
   }
