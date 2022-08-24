@@ -1,6 +1,7 @@
 export class Section {
-  constructor(containerSelector) {
+  constructor(renderer, containerSelector) {
     this._container = document.querySelector(containerSelector);
+    this._renderer = renderer;
   }
   _clear() {
     this._container.innerHTML = "";
@@ -8,11 +9,8 @@ export class Section {
   renderItems(items) {
     this._clear();
     items.forEach((item) => {
-      this.addItem(item, false);
+      this._renderer(item);
     });
-  }
-  deleteItem(item){
-    item.remove();
   }
   addItem(element, isInStart) {
     if (isInStart) {

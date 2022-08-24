@@ -8,9 +8,11 @@ import "./index.css";
 import {
   validationConfig,
   formValidators,
-  popupsConfig
+  popupsConfig,
 } from "../utils/constants.js";
-const cardList = new Section(".elements__list");
+const cardList = new Section((item) => {
+  cardList.addItem(createCard(item), false);
+}, ".elements__list");
 //подключаем апи
 import { Api } from "../components/Api.js";
 import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
@@ -37,13 +39,13 @@ const userPopup = new PopupWithForm(popupsConfig, ".popup_type_profile", {
       .patchUserInfo(inputData)
       .then((data) => {
         userInfo.setUserInfo(data);
+        handleCloseForm();
       })
       .catch((err) => {
         console.log("Ошибка API при обновлении данных пользователя!", err);
       })
       .finally(() => {
         showLoading(false);
-        handleCloseForm();
       });
   },
 });
@@ -80,9 +82,9 @@ const createCard = (data) => {
       handleCardClick: openImagePreviewPopup,
       handleDeleteClick: (card, cardId) => {
         popupConfirmDeleteCard.open(() => {
-          card.deleteCard();
           api
             .deleteCard(cardId)
+            .then(() => card.deleteCard())
             .catch((err) => console.log("Ошибка при удалении карточки!", err));
         });
       },
@@ -109,22 +111,20 @@ const createCard = (data) => {
         }
       },
     },
-    userInfo.getUserInfo()._id
+    userInfo.id
   );
   return newCard.generateCard();
 };
-
 
 //создание первоначальных карточек и заполнение данных пользователя
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
     userInfo.setUserInfo(userData);
-    initialCards.forEach((item) => cardList.addItem(createCard(item), false));
+    cardList.renderItems(initialCards);
   })
   .catch((err) => {
     console.log("Ошибка API при загрузке первоначальных данных!", err);
   });
-
 
 //добавление новой карточки
 const newElementPopup = new PopupWithForm(
@@ -157,7 +157,6 @@ document
   });
 
 //аватар
-const avatarElement = document.querySelector(".profile__avatar");
 const avatarPopup = new PopupWithForm(
   popupsConfig,
   ".popup_type_change-avatar",
@@ -167,7 +166,7 @@ const avatarPopup = new PopupWithForm(
       api
         .changeAvatar(inputData.link)
         .then(() => {
-          avatarElement.src = inputData.link;
+          userInfo.setUserInfo({ avatar: inputData.link });
         })
         .catch((err) => {
           console.log("Ошибка API при обновлении аватара!", err);
