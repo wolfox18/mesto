@@ -137,13 +137,13 @@ const newElementPopup = new PopupWithForm(
         .postNewCard(inputData)
         .then((data) => {
           cardList.addItem(createCard(data), true);
+          handleCloseForm();
         })
         .catch((err) => {
           console.log("Ошибка API при загрузке карточек!", err);
         })
         .finally(() => {
           showLoading(false);
-          handleCloseForm();
         });
     },
   }
@@ -167,13 +167,13 @@ const avatarPopup = new PopupWithForm(
         .changeAvatar(inputData.link)
         .then(() => {
           userInfo.setUserInfo({ avatar: inputData.link });
+          handleCloseForm();
         })
         .catch((err) => {
           console.log("Ошибка API при обновлении аватара!", err);
         })
         .finally(() => {
           showLoading(false);
-          handleCloseForm();
         });
     },
   }
